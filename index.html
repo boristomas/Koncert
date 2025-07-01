@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRVATSKA ZOVE!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* --- General and Background Styling --- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Oswald', sans-serif;
+            background-color: #000; /* Black fallback */
+            color: white;
+        }
+
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        #video-background iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* --- Content Overlay --- */
+        .content-overlay {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for readability */
+        }
+
+        /* --- Titles --- */
+        h1 {
+            font-size: 6vw;
+            margin: 0;
+            color: #FF0000; /* Bright Red */
+            letter-spacing: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        h2 {
+            font-size: 2.5vw;
+            margin-top: 10px;
+        }
+
+        /* --- Countdown Timer Styling --- */
+        #countdown {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            border: 5px solid #FF0000;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+        }
+
+        .countdown-unit {
+            margin: 0 20px;
+            padding: 10px;
+            border-left: 1px solid white;
+            border-right: 1px solid white;
+            min-width: 120px;
+            background-image:
+                linear-gradient(45deg, #eee 25%, transparent 25%),
+                linear-gradient(-45deg, #eee 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #eee 75%),
+                linear-gradient(-45deg, transparent 75%, #eee 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            background-color: #FF0000;
+        }
+
+        .countdown-unit span {
+            display: block;
+            font-size: 4em;
+            color: #001369;
+            text-shadow: 2px 2px 2px white;
+        }
+
+        .countdown-unit .label {
+            font-size: 1.5em;
+            color: #001369;
+            text-shadow: 1px 1px 1px white;
+        }
+        
+        /* --- Unmute Button --- */
+        #unmute-button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 2em;
+            font-family: 'Oswald', sans-serif;
+            color: white;
+            background-color: #FF0000;
+            border: 3px solid white;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* --- Footer --- */
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 2em;
+            color: white;
+            text-shadow: 2px 2px 4px black;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="video-background">
+        <div id="youtube-player"></div>
+    </div>
+
+    <div class="content-overlay">
+        <h1>Dan Ponosa i Slave</h1>
+        <h2>Odbrojavanje do najvećeg koncerta svih Hrvata</h2>
+
+        <div id="countdown">
+            <div class="countdown-unit">
+                <span id="days">00</span>
+                <div class="label">Dana</div>
+            </div>
+            <div class="countdown-unit">
+                <span id="hours">00</span>
+                <div class="label">Sati</div>
+            </div>
+            <div class="countdown-unit">
+                <span id="minutes">00</span>
+                <div class="label">Minuta</div>
+            </div>
+            <div class="countdown-unit">
+                <span id="seconds">00</span>
+                <div class="label">Sekundi</div>
+            </div>
+        </div>
+        
+        <button id="unmute-button">Klikni za zvuk</button>
+
+    </div>
+    
+    <footer>
+        Bog i Hrvati!
+    </footer>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // --- YouTube Player Logic ---
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '360',
+                width: '640',
+                videoId: 'KRt_i8n3cI0', // The video ID
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'loop': 1,
+                    'playlist': 'KRt_i8n3cI0', // Required for loop to work
+                    'mute': 1, // Must be muted to autoplay
+                    'showinfo': 0,
+                    'modestbranding': 1
+                }
+            });
+        }
+        
+        // --- Unmute Button Logic ---
+        const unmuteButton = document.getElementById('unmute-button');
+        unmuteButton.addEventListener('click', () => {
+            if (player) {
+                player.unMute();
+                unmuteButton.style.display = 'none'; // Hide button after click
+            }
+        });
+
+        // --- Countdown Timer Logic ---
+        const countDownDate = new Date("2025-07-05T20:00:00+02:00").getTime();
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<h1>VRIJEME JE!</h1>";
+                document.querySelector('h1').innerText = "Stigli smo!";
+                document.querySelector('h2').innerText = "Hrvatska živi vječno!";
+                unmuteButton.style.display = 'none';
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
