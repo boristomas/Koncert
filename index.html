@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>HRVATSKA ZOVE!!</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HRVATSKA ZOVE!</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cpattern id='p' width='50' height='50' patternUnits='userSpaceOnUse'%3E%3Crect fill='%23FF0000' width='25' height='25'/%3E%3Crect fill='%23FF0000' x='25' y='25' width='25' height='25'/%3E%3Crect fill='%23FFFFFF' x='25' width='25' height='25'/%3E%3Crect fill='%23FFFFFF' y='25' width='25' height='25'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='%23001369' width='100' height='100'/%3E%3Crect x='5' y='5' width='90' height='90' fill='url(%23p)'/%3E%3Cpath stroke='%23FFFFFF' stroke-width='5' d='M5 95 L5 5 L95 5' fill='none'/%3E%3Cpath stroke='%23800000' stroke-width='5' d='M5 95 L95 95 L95 5' fill='none'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
   <style>
     body, html {
@@ -44,7 +42,7 @@
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.5);
     }
 
     .content-overlay {
@@ -58,8 +56,6 @@
       text-transform: uppercase;
       text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.9);
       z-index: 1;
-      padding: 2vh;
-      box-sizing: border-box;
     }
 
     h1 {
@@ -77,22 +73,19 @@
 
     #countdown {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
       margin-top: 5vh;
       border: 3px solid #FF0000;
       background-color: rgba(0, 0, 0, 0.5);
-      padding: 1vh;
+      padding: 2vh;
       max-width: 95vw;
       box-sizing: border-box;
+      gap: 20px;
     }
 
     .countdown-unit {
-      margin: 1vh;
-      padding: 1vh;
-      flex: 1 1 100px;
-      min-width: 80px;
-      max-width: 120px;
+      padding: 2vh;
       background-image:
         linear-gradient(45deg, #eee 25%, transparent 25%),
         linear-gradient(-45deg, #eee 25%, transparent 25%),
@@ -104,17 +97,19 @@
       border-left: 1px solid white;
       border-right: 1px solid white;
       box-sizing: border-box;
+      min-width: 120px;
+      text-align: center;
     }
 
     .countdown-unit span {
       display: block;
-      font-size: 2.5em;
+      font-size: 4em;
       color: #001369;
       text-shadow: 2px 2px 2px white;
     }
 
     .countdown-unit .label {
-      font-size: 1em;
+      font-size: 1.5em;
       color: #001369;
       text-shadow: 1px 1px 1px white;
     }
@@ -151,12 +146,14 @@
     }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 8vw;
+      #countdown {
+        flex-wrap: wrap;
+        gap: 10px;
       }
 
-      h2 {
-        font-size: 4vw;
+      .countdown-unit {
+        min-width: 40vw;
+        padding: 1vh;
       }
 
       .countdown-unit span {
@@ -165,6 +162,14 @@
 
       .countdown-unit .label {
         font-size: 0.9em;
+      }
+
+      h1 {
+        font-size: 8vw;
+      }
+
+      h2 {
+        font-size: 4vw;
       }
 
       #unmute-button {
@@ -180,13 +185,11 @@
 </head>
 <body>
 
-  <!-- Video Background -->
   <div id="video-background">
     <div id="youtube-player"></div>
     <div class="overlay"></div>
   </div>
 
-  <!-- Main Content -->
   <div class="content-overlay">
     <h1>Dan Ponosa i Slave</h1>
     <h2>Odbrojavanje do najvećeg koncerta svih Hrvata</h2>
@@ -215,7 +218,6 @@
 
   <footer>Bog i Hrvati!</footer>
 
-  <!-- YouTube Iframe API -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     let player;
@@ -239,7 +241,6 @@
       });
     }
 
-    // Unmute logic
     const unmuteButton = document.getElementById('unmute-button');
     unmuteButton.addEventListener('click', () => {
       if (player) {
@@ -248,7 +249,6 @@
       }
     });
 
-    // Countdown logic
     const countDownDate = new Date("2025-07-05T20:00:00+02:00").getTime();
     const x = setInterval(function () {
       const now = new Date().getTime();
