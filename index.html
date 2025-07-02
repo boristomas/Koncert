@@ -1,246 +1,278 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRVATSKA ZOVE!</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cpattern id='p' width='50' height='50' patternUnits='userSpaceOnUse'%3E%3Crect fill='%23FF0000' width='25' height='25'/%3E%3Crect fill='%23FF0000' x='25' y='25' width='25' height='25'/%3E%3Crect fill='%23FFFFFF' x='25' width='25' height='25'/%3E%3Crect fill='%23FFFFFF' y='25' width='25' height='25'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='%23001369' width='100' height='100'/%3E%3Crect x='5' y='5' width='90' height='90' fill='url(%23p)'/%3E%3Cpath stroke='%23FFFFFF' stroke-width='5' d='M5 95 L5 5 L95 5' fill='none'/%3E%3Cpath stroke='%23800000' stroke-width='5' d='M5 95 L95 95 L95 5' fill='none'/%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Oswald', sans-serif;
-            background-color: #000;
-            color: white;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>HRVATSKA ZOVE!!</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cpattern id='p' width='50' height='50' patternUnits='userSpaceOnUse'%3E%3Crect fill='%23FF0000' width='25' height='25'/%3E%3Crect fill='%23FF0000' x='25' y='25' width='25' height='25'/%3E%3Crect fill='%23FFFFFF' x='25' width='25' height='25'/%3E%3Crect fill='%23FFFFFF' y='25' width='25' height='25'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='%23001369' width='100' height='100'/%3E%3Crect x='5' y='5' width='90' height='90' fill='url(%23p)'/%3E%3Cpath stroke='%23FFFFFF' stroke-width='5' d='M5 95 L5 5 L95 5' fill='none'/%3E%3Cpath stroke='%23800000' stroke-width='5' d='M5 95 L95 95 L95 5' fill='none'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Oswald', sans-serif;
+      background-color: #000;
+      color: white;
+    }
 
-        /* Background video container */
-        #video-background, #youtube-player {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            overflow: hidden;
-        }
+    #video-background, #youtube-player {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      overflow: hidden;
+    }
 
-        #youtube-player iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            pointer-events: none;
-        }
+    #youtube-player iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
 
-        #video-background .overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9); /* Dimming layer */
-        }
+    #video-background .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
 
-        .content-overlay {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.9);
-            z-index: 1;
-        }
+    .content-overlay {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-transform: uppercase;
+      text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.9);
+      z-index: 1;
+      padding: 2vh;
+      box-sizing: border-box;
+    }
 
-        h1 {
-            font-size: 6vw;
-            margin: 0;
-            color: #FF0000;
-            letter-spacing: 5px;
-            animation: pulse 2s infinite;
-        }
+    h1 {
+      font-size: 6vw;
+      margin: 0;
+      color: #FF0000;
+      letter-spacing: 5px;
+      animation: pulse 2s infinite;
+    }
 
-        h2 {
-            font-size: 2.5vw;
-            margin-top: 10px;
-        }
+    h2 {
+      font-size: 2.5vw;
+      margin-top: 10px;
+    }
 
-        #countdown {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-            border: 5px solid #FF0000;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-        }
+    #countdown {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 5vh;
+      border: 3px solid #FF0000;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 1vh;
+      max-width: 95vw;
+      box-sizing: border-box;
+    }
 
-        .countdown-unit {
-            margin: 0 20px;
-            padding: 10px;
-            border-left: 1px solid white;
-            border-right: 1px solid white;
-            min-width: 120px;
-            background-image:
-                linear-gradient(45deg, #eee 25%, transparent 25%),
-                linear-gradient(-45deg, #eee 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, #eee 75%),
-                linear-gradient(-45deg, transparent 75%, #eee 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-            background-color: #FF0000;
-        }
+    .countdown-unit {
+      margin: 1vh;
+      padding: 1vh;
+      flex: 1 1 100px;
+      min-width: 80px;
+      max-width: 120px;
+      background-image:
+        linear-gradient(45deg, #eee 25%, transparent 25%),
+        linear-gradient(-45deg, #eee 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #eee 75%),
+        linear-gradient(-45deg, transparent 75%, #eee 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #FF0000;
+      border-left: 1px solid white;
+      border-right: 1px solid white;
+      box-sizing: border-box;
+    }
 
-        .countdown-unit span {
-            display: block;
-            font-size: 4em;
-            color: #001369;
-            text-shadow: 2px 2px 2px white;
-        }
+    .countdown-unit span {
+      display: block;
+      font-size: 2.5em;
+      color: #001369;
+      text-shadow: 2px 2px 2px white;
+    }
 
-        .countdown-unit .label {
-            font-size: 1.5em;
-            color: #001369;
-            text-shadow: 1px 1px 1px white;
-        }
+    .countdown-unit .label {
+      font-size: 1em;
+      color: #001369;
+      text-shadow: 1px 1px 1px white;
+    }
 
-        #unmute-button {
-            margin-top: 30px;
-            padding: 15px 30px;
-            font-size: 2em;
-            font-family: 'Oswald', sans-serif;
-            color: white;
-            background-color: #FF0000;
-            border: 3px solid white;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: pulse 1.5s infinite;
-        }
+    #unmute-button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 2em;
+      font-family: 'Oswald', sans-serif;
+      color: white;
+      background-color: #FF0000;
+      border: 3px solid white;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: pulse 1.5s infinite;
+    }
 
-        footer {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-            font-size: 2em;
-            color: white;
-            text-shadow: 2px 2px 4px black;
-            z-index: 1;
-        }
+    footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 2em;
+      color: white;
+      text-shadow: 2px 2px 4px black;
+      z-index: 1;
+    }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-    </style>
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 8vw;
+      }
+
+      h2 {
+        font-size: 4vw;
+      }
+
+      .countdown-unit span {
+        font-size: 1.8em;
+      }
+
+      .countdown-unit .label {
+        font-size: 0.9em;
+      }
+
+      #unmute-button {
+        font-size: 1.2em;
+        padding: 10px 20px;
+      }
+
+      footer {
+        font-size: 1.2em;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Video Background -->
-    <div id="video-background">
-        <div id="youtube-player"></div>
-        <div class="overlay"></div>
+  <!-- Video Background -->
+  <div id="video-background">
+    <div id="youtube-player"></div>
+    <div class="overlay"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-overlay">
+    <h1>Dan Ponosa i Slave</h1>
+    <h2>Odbrojavanje do najvećeg koncerta svih Hrvata</h2>
+
+    <div id="countdown">
+      <div class="countdown-unit">
+        <span id="days">00</span>
+        <div class="label">Dana</div>
+      </div>
+      <div class="countdown-unit">
+        <span id="hours">00</span>
+        <div class="label">Sati</div>
+      </div>
+      <div class="countdown-unit">
+        <span id="minutes">00</span>
+        <div class="label">Minuta</div>
+      </div>
+      <div class="countdown-unit">
+        <span id="seconds">00</span>
+        <div class="label">Sekundi</div>
+      </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="content-overlay">
-        <h1>Dan Ponosa i Slave</h1>
-        <h2>Odbrojavanje do najvećeg koncerta svih Hrvata</h2>
+    <button id="unmute-button">Klikni za zvuk</button>
+  </div>
 
-        <div id="countdown">
-            <div class="countdown-unit">
-                <span id="days">00</span>
-                <div class="label">Dana</div>
-            </div>
-            <div class="countdown-unit">
-                <span id="hours">00</span>
-                <div class="label">Sati</div>
-            </div>
-            <div class="countdown-unit">
-                <span id="minutes">00</span>
-                <div class="label">Minuta</div>
-            </div>
-            <div class="countdown-unit">
-                <span id="seconds">00</span>
-                <div class="label">Sekundi</div>
-            </div>
-        </div>
+  <footer>Bog i Hrvati!</footer>
 
-        <button id="unmute-button">Klikni za zvuk</button>
-    </div>
-
-    <footer>
-        Bog i Hrvati!
-    </footer>
-
-    <!-- YouTube Iframe API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script>
-        let player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-player', {
-                videoId: 'pfUCdsLgr4Y',
-                playerVars: {
-                    autoplay: 1,
-                    mute: 1,
-                    controls: 0,
-                    loop: 1,
-                    playlist: 'pfUCdsLgr4Y',
-                    modestbranding: 1,
-                    rel: 0
-                },
-                events: {
-                    'onReady': function (event) {
-                        event.target.mute();
-                    }
-                }
-            });
+  <!-- YouTube Iframe API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtube-player', {
+        videoId: 'pfUCdsLgr4Y',
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          controls: 0,
+          loop: 1,
+          playlist: 'pfUCdsLgr4Y',
+          modestbranding: 1,
+          rel: 0
+        },
+        events: {
+          'onReady': function (event) {
+            event.target.mute();
+          }
         }
+      });
+    }
 
-        // Unmute logic
-        const unmuteButton = document.getElementById('unmute-button');
-        unmuteButton.addEventListener('click', () => {
-            if (player) {
-                player.unMute();
-                unmuteButton.style.display = 'none';
-            }
-        });
+    // Unmute logic
+    const unmuteButton = document.getElementById('unmute-button');
+    unmuteButton.addEventListener('click', () => {
+      if (player) {
+        player.unMute();
+        unmuteButton.style.display = 'none';
+      }
+    });
 
-        // Countdown logic
-        const countDownDate = new Date("2025-07-05T20:00:00+02:00").getTime();
-        const x = setInterval(function () {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
+    // Countdown logic
+    const countDownDate = new Date("2025-07-05T20:00:00+02:00").getTime();
+    const x = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = String(days).padStart(2, '0');
-            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+      document.getElementById("days").innerText = String(days).padStart(2, '0');
+      document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+      document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "<h1>VRIJEME JE!</h1>";
-                document.querySelector('h1').innerText = "Stigli smo!";
-                document.querySelector('h2').innerText = "Hrvatska živi vječno!";
-                unmuteButton.style.display = 'none';
-            }
-        }, 1000);
-    </script>
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "<h1>VRIJEME JE!</h1>";
+        document.querySelector('h1').innerText = "Stigli smo!";
+        document.querySelector('h2').innerText = "Hrvatska živi vječno!";
+        unmuteButton.style.display = 'none';
+      }
+    }, 1000);
+  </script>
 
 </body>
 </html>
